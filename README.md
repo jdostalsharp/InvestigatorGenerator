@@ -1,2 +1,2 @@
 # InvestigatorGenerator
-Call of Cthulhu 7e Characer generator
+Call of Cthulhu 7e Character generator
