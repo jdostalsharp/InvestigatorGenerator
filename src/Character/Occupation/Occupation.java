@@ -86,8 +86,17 @@ public class Occupation {
         this.majorSkill = majorSkill;
         this.minorSkill = minorSkill;
         this.minorSkillExtra = null;
-        this.creditMax = creditMax;
-        this.creditMin = creditMin;
+        if (creditMax > 1 && creditMax < 100) {
+            this.creditMax = creditMax;
+        } else {
+            this.creditMax = 50;
+        }
+
+        if (creditMin > 0 && creditMin < creditMax) {
+            this.creditMin = creditMin;
+        } else {
+            this.creditMin = (this.creditMax - 1);
+        }
         this.contacts = new ArrayList<String>();
         this.skills = new ArrayList<String>();
     }
