@@ -1,5 +1,6 @@
 package Character;
 
+import Character.Occupation.Occupation;
 import Character.enums.Gender;
 /**
  * A class representing an investigator
@@ -14,6 +15,9 @@ public class Investigator {
     private int age;
     /** the investigators gender **/
     private Gender gender;
+    /** The investigators occupation **/
+    private Occupation occupation;
+
 
     public Investigator(String name, int age) {
         this.name = name;

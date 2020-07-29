@@ -10,7 +10,7 @@ import static java.lang.System.currentTimeMillis;
  * @version (23/03/2020)
  */
 public class DiceRoll {
-    private Random randomInt;
+    private final Random randomInt;
 
     public DiceRoll() {
         this.randomInt = new Random();
@@ -26,7 +26,6 @@ public class DiceRoll {
         if (diceSides <= 0) {
             return 1;
         }
-        int diceRoll = ((Math.abs(randomInt.nextInt()) % diceSides) + 1);
-        return diceRoll;
+        return ((Math.abs(randomInt.nextInt()) % diceSides) + 1);
     }
 }

@@ -22,7 +22,7 @@ public class OccupationDatabase {
     private Set<Occupation> database;
 
     /** File path to database */
-    private String dbFileName;
+    private final String dbFileName;
 
     /**
      * Invariant: database != null && dcFilename != null
