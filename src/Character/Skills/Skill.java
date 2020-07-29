@@ -11,6 +11,9 @@ public class Skill {
     /** Value of the skill */
     private int value;
 
+    private final int MAX_VALUE = 99;
+    private final int MIN_VALUE = 0;
+
     /**
      * Constructor for a skill
      * @param name Name of the skill.
@@ -18,10 +21,10 @@ public class Skill {
      */
     public Skill(String name, int value) {
         this.name = name;
-        if (value >= 0 && value < 100) {
+        if (value >= MIN_VALUE && value <= MAX_VALUE) {
             this.value = value;
         } else {
-            this.value = 0;
+            this.value = MIN_VALUE;
         }
     }
 
@@ -54,11 +57,26 @@ public class Skill {
      * @param value >= 0 && < 100
      */
     public void setValue(int value) {
-        if (value >= 0 && value < 100) {
+        if (value >= MIN_VALUE && value <= MAX_VALUE) {
             this.value = value;
         } else {
-            this.value = 0;
+            this.value = MIN_VALUE;
         }
+    }
+
+    /**
+     * Increase value of skill
+     * @param value value to increase skill by
+     * @return wasted amount over MAX_VALUE value is increased by
+     */
+    public int addValue(int value) {
+        int temp = getValue() + value;
+        if (temp < MAX_VALUE && temp >= MIN_VALUE) {
+            setValue(temp);
+            return 0;
+        }
+        setValue(MAX_VALUE);
+        return temp % MAX_VALUE;
     }
 
     @Override
