@@ -11,8 +11,8 @@ public class Skill {
     /** Value of the skill */
     private int value;
 
-    private final int MAX_VALUE = 99;
-    private final int MIN_VALUE = 0;
+    private static int MAX_VALUE = 99;
+    private static int MIN_VALUE = 0;
 
     /**
      * Constructor for a skill

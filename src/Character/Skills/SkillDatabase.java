@@ -1,4 +1,4 @@
-package Character.Occupation;
+package Character.Skills;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -7,35 +7,35 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * A Class representing a Occupation 'database'.
+ * A Class representing a Skill 'database'.
  * 'database merely refers to a searchable collection,
  * that can be stored and loaded from a file.
  *
- * @see Occupation
+ * @see Skill
  *
  * @author Jeremy Dostal-Sharp
  * @version (29/07/2020)
  */
 
-public class OccupationDatabase {
+public class SkillDatabase {
     /** The database collection is represented as a set */
-    private Set<Occupation> database;
+    private Set<Skill> database;
 
     /** File path to database */
     private final String dbFileName;
 
     /**
-     * Invariant: database != null && dbFilename != null
+     * Invariant: database != null && dcFilename != null
      */
 
     /**
-     * Creates a new OccuaptionDatabase with the given string
+     * Creates a new SkillDatabase with the given string
      * for the file path.
      *
      * @param filename file path to database store.
      */
-    public OccupationDatabase(String filename) {
-        database = new HashSet<Occupation>();
+    public SkillDatabase(String filename) {
+        database = new HashSet<Skill>();
         dbFileName = filename;
     }
 
@@ -48,7 +48,7 @@ public class OccupationDatabase {
         ObjectInputStream input = new ObjectInputStream(new FileInputStream(dbFileName));
 
         try {
-            database = (Set<Occupation>) input.readObject();
+            database = (Set<Skill>) input.readObject();
         }
         catch (ClassCastException cce) {
             throw new Exception(("Data file corrupt or unavailable"));
@@ -68,28 +68,28 @@ public class OccupationDatabase {
     }
 
     /**
-     * Add an Occupation to the database.
+     * Add an Skill to the database.
      *
-     * @param occ the occupation to add
+     * @param skill the occupation to add
      */
-    public void add(Occupation occ) {database.add(occ); }
+    public void add(Skill skill) {database.add(skill); }
 
     /**
-     * Remove a Occupation from the database
+     * Remove a Skill from the database
      *
-     * @param occ the occupation to remove
+     * @param skill the occupation to remove
      */
-    public void remove(Occupation occ) { database.remove(occ); }
+    public void remove(Skill skill) { database.remove(skill); }
 
     /**
-     * Update an Occupation in the database if present, adds if not present.
-     * @param occ the occupation to update.
+     * Update an Skill in the database if present, adds if not present.
+     * @param skill the occupation to update.
      */
-    public void update(Occupation occ) {
-        if (database.contains(occ)) {
-            database.remove(occ);
+    public void update(Skill skill) {
+        if (database.contains(skill)) {
+            database.remove(skill);
         }
-        database.add(occ);
+        database.add(skill);
     }
 
     /**
@@ -100,12 +100,12 @@ public class OccupationDatabase {
      * @param name the character nae to search for
      * @return character object found or null
      */
-    public Occupation search(String name) {
+    public Skill search(String name) {
         try {
-            for (Occupation occ : database)
-                if (name.equals(occ.getName()))
-                    return (Occupation) occ.clone();
-        } catch (ClassCastException cce) {}
+            for (Skill skill : database)
+                if (name.equals(skill.getName()))
+                    return (Skill) skill.clone();
+        } catch (ClassCastException | CloneNotSupportedException cce) {}
 
         return null;
     }
@@ -114,10 +114,10 @@ public class OccupationDatabase {
      * Returns a sorted list of the occupations in the database.
      * @return Returns a list of the occupations in the database.
      */
-    public List<String> getOccupationNames() {
+    public List<String> getSkillNames() {
         List<String> names = new ArrayList<String>();
-        for (Occupation occupation : database) {
-            names.add(occupation.getName());
+        for (Skill skill : database) {
+            names.add(skill.getName());
         }
         names.sort(String::compareToIgnoreCase);
         return names;
@@ -125,14 +125,15 @@ public class OccupationDatabase {
 
     @Override
     public String toString() {
-        String result = String.format("Occupation Database [%s]", dbFileName);
+        String result = String.format("Skill Database [%s]", dbFileName);
         if (database.isEmpty()) {
             result += "\n Empty";
         }
-        for (Occupation occupation : database) {
-            result += String.format("\n %s", occupation.toString());
+        for (Skill skill : database) {
+            result += String.format("\n %s", skill.toString());
         }
 
         return result;
     }
 }
+
